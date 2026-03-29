@@ -1,0 +1,15 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Cafe Booking</h1>
+    <p class="lead">Book your table at our cozy cafe!</p>
+    <p>Enjoy artisan coffee, fresh pastries, and a warm atmosphere.</p>
+    <a href="/Menu" class="btn btn-primary btn-lg">View Our Menu</a>
+</div>
+
+<h1>@Model.SiteTitle</h1>
+<p>Contact us at: <a href="mailto:@Model.ContactEmail">@Model.ContactEmail</a></p>

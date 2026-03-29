@@ -1,0 +1,34 @@
+@page
+@using CafeBooking.Web.Models
+@model MenuModel
+
+<div class="container mt-4">
+    <h1>Our Menu</h1>
+
+    @foreach (var category in Enum.GetValues<MenuCategory>())
+    {
+        var items = Model.MenuItems.Where(m => m.Category == category).ToList();
+        if (items.Any())
+        {
+            <div class="mt-4">
+                <h3>@category</h3>
+                <div class="row">
+                    @foreach (var item in items)
+                    {
+                        <div class="col-md-6 mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        @item.Name
+                                        <span class="badge bg-success float-end">$@item.Price.ToString("F2")</span>
+                                    </h5>
+                                    <p class="card-text text-muted">@item.Description</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    }
+</div>
