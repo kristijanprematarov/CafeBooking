@@ -30,8 +30,7 @@ public class MenuModel : PageModel
 
         _telemetryClient.TrackEvent("MenuViewed", new Dictionary<string, string>
         {
-            {"ItemCount", MenuItems.Count.ToString() },
-            {"Timestamp", DateTime.UtcNow.ToString("o")  }
+            {"ItemCount", MenuItems.Count.ToString() }
         });
     }
 }
