@@ -1,5 +1,6 @@
 using CafeBooking.Web.Data;
 using CafeBooking.Web.Models;
+using Microsoft.ApplicationInsights;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,10 +9,13 @@ namespace CafeBooking.Web.Pages;
 public class MenuModel : PageModel
 {
     private readonly ApplicationDbContext _context;
+    private readonly TelemetryClient _telemetryClient;
 
-    public MenuModel(ApplicationDbContext context)
+    public MenuModel(ApplicationDbContext context,
+        TelemetryClient telemetryClient)
     {
         _context = context;
+        _telemetryClient = telemetryClient;
     }
 
     public List<MenuItem> MenuItems { get; set; } = new();
@@ -23,5 +27,11 @@ public class MenuModel : PageModel
             .OrderBy(m => m.Category)
             .ThenBy(m => m.Name)
             .ToListAsync();
+
+        _telemetryClient.TrackEvent("MenuViewed", new Dictionary<string, string>
+        {
+            {"ItemCount", MenuItems.Count.ToString() },
+            {"Timestamp", DateTime.UtcNow.ToString("o")  }
+        });
     }
 }
