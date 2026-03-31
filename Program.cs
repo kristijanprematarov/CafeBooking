@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddApplicationInsightsTelemetry(options =>
 {
+    options.ConnectionString = builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"];
     options.SamplingRatio = 1.0f; // Capture 100% of telemetry for demo purposes
 });
 
