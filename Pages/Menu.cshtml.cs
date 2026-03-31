@@ -32,5 +32,7 @@ public class MenuModel : PageModel
         {
             {"ItemCount", MenuItems.Count.ToString() }
         });
+
+        _telemetryClient.TrackTrace($"Menu page accessed with {MenuItems.Count} items available.");
     }
 }
