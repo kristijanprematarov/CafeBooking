@@ -32,7 +32,5 @@ public class MenuModel : PageModel
         {
             {"ItemCount", MenuItems.Count.ToString() }
         });
-
-        _telemetryClient.TrackException(new Exception($"TEST EXCEPTION"));
     }
 }
