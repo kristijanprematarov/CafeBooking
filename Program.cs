@@ -4,7 +4,10 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddApplicationInsightsTelemetry();
+builder.Services.AddApplicationInsightsTelemetry(options =>
+{
+    options.SamplingRatio = 1.0f; // Capture 100% of telemetry for demo purposes
+});
 
 // Add services to the container.
 builder.Services.AddRazorPages();
