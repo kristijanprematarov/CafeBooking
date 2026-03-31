@@ -28,7 +28,7 @@ public class MenuModel : PageModel
             .ThenBy(m => m.Name)
             .ToListAsync();
 
-        _telemetryClient.TrackEvent("MenuViewedV3", new Dictionary<string, string>
+        _telemetryClient.TrackEvent("MenuViewedV4", new Dictionary<string, string>
         {
             {"ItemCount", MenuItems.Count.ToString() }
         });
