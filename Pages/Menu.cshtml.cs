@@ -32,7 +32,5 @@ public class MenuModel : PageModel
         {
             {"ItemCount", MenuItems.Count.ToString() }
         });
-
-        await _telemetryClient.FlushAsync(CancellationToken.None);
     }
 }
