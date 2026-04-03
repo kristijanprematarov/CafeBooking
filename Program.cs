@@ -1,4 +1,5 @@
 using CafeBooking.Web.Data;
+using CafeBooking.Web.Health;
 using CafeBooking.Web.Models;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +24,8 @@ builder.Services.AddResponseCompression(options =>
     });
 });
 
+builder.Services.AddHealthChecks()
+    .AddCheck<DatabaseHealthCheck>("database");
 
 // Add services to the container.
 builder.Services.AddRazorPages();
@@ -71,6 +74,8 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapRazorPages();
+
+app.MapHealthChecks("/health");
 
 // DEMO ONLY — remove after recording
 app.MapGet("/config-check", (IConfiguration config) =>
