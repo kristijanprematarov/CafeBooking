@@ -2,10 +2,12 @@ using CafeBooking.Web.Data;
 using CafeBooking.Web.Models;
 using Microsoft.ApplicationInsights;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.OutputCaching;
 using Microsoft.EntityFrameworkCore;
 
 namespace CafeBooking.Web.Pages;
 
+[OutputCache(PolicyName = "MenuCache")]
 public class MenuModel : PageModel
 {
     private readonly ApplicationDbContext _context;
